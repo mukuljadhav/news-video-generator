@@ -9,8 +9,6 @@ __pycache__/
 dist/
 build/
 
-data/
-output/
 assets/images/
 
 *.mp4
