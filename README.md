@@ -16,21 +16,17 @@ This allows you to generate both positive and negative views (or any perspective
 
 ```bash
 # Scrape Ukraine articles (extracts full article content ~5K chars each)
-python -c "
-from src.news_scraper import NewsScraper
-scraper = NewsScraper()
-scraper.run(topic='Ukraine', max_articles=15, output_file='data/ukraine_news.json')
-"
+python scrape_news.py --topic "Ukraine" --max-articles 15 --output data/ukraine_news.json
 
 # More examples:
-# China news (3 articles available)
-python -c "from src.news_scraper import NewsScraper; NewsScraper().run('China', 20)"
+# China news
+python scrape_news.py --topic "China" --max-articles 20 --output data/china_news.json
 
-# India news (2 articles available)
-python -c "from src.news_scraper import NewsScraper; NewsScraper().run('India', 15)"
+# India news
+python scrape_news.py --topic "India" --max-articles 15 --output data/india_news.json
 
-# Tesla news (2 articles available)
-python -c "from src.news_scraper import NewsScraper; NewsScraper().run('Tesla', 15)"
+# Tesla news
+python scrape_news.py --topic "Tesla" --max-articles 15 --output data/tesla_news.json
 ```
 
 **Why this scraper?**
@@ -124,11 +120,7 @@ pip install -r requirements.txt
 
 ```bash
 # Step 1: Scrape data once (gets 3 articles, ~15K chars total)
-python -c "
-from src.news_scraper import NewsScraper
-scraper = NewsScraper()
-scraper.run(topic='Ukraine', max_articles=15, output_file='data/ukraine_news.json')
-"
+python scrape_news.py --topic "Ukraine" --max-articles 15 --output data/ukraine_news.json
 
 # Step 2: Generate multiple videos from same data
 python generate_video.py --data data/ukraine_news.json --query "summary of Ukraine news" --duration 60
@@ -140,7 +132,7 @@ python generate_video.py --data data/ukraine_news.json --query "Russia's perspec
 
 ```bash
 # Step 1: Scrape data (3 articles available)
-python -c "from src.news_scraper import NewsScraper; NewsScraper().run('China', 20, 'data/china_news.json')"
+python scrape_news.py --topic "China" --max-articles 20 --output data/china_news.json
 
 # Step 2: Generate videos
 python generate_video.py --data data/china_news.json --query "summary of China news" --duration 60
@@ -151,7 +143,7 @@ python generate_video.py --data data/china_news.json --query "China's economic d
 
 ```bash
 # Step 1: Scrape (2 articles available)
-python -c "from src.news_scraper import NewsScraper; NewsScraper().run('India', 15, 'data/india_news.json')"
+python scrape_news.py --topic "India" --max-articles 15 --output data/india_news.json
 
 # Step 2: Generate videos
 python generate_video.py --data data/india_news.json --query "summary of India news" --duration 60
@@ -163,15 +155,7 @@ python generate_video.py --data data/india_news.json --query "India's political 
 ### Scraping Options
 
 ```bash
-python -c "
-from src.news_scraper import NewsScraper
-scraper = NewsScraper()
-scraper.run(
-    topic='Your Topic',
-    max_articles=20,        # Number of articles to scrape
-    output_file='data/custom_filename.json'
-)
-"
+python scrape_news.py --topic "Your Topic" --max-articles 20 --output data/custom_filename.json
 ```
 
 ### Video Generation Options
@@ -199,6 +183,7 @@ python generate_video.py \
 ```
 news-video-generator/
 ├── generate_video.py       # Generate videos from scraped data
+├── scrape_news.py          # Scrape news articles (easy CLI)
 ├── interactive.py          # Interactive mode UI
 ├── src/
 │   ├── news_scraper.py     # Full-content BBC RSS scraper (RECOMMENDED)
